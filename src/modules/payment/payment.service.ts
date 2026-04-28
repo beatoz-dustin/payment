@@ -65,8 +65,6 @@ export class PaymentService {
     );
 
     await this.httpBridgeService.sendLog(logMessage, action, why, inputMessage);
-    await this.httpBridgeService.sendAudit(logMessage, action, why, inputMessage);
-
     if (action === 'payment.completed') {
       const downstreamMessage = `payment 서비스가 결제 완료를 remittance로 전달하는 이유: ${why}.`;
       const downstreamResponse = await this.httpBridgeService.postService<{
